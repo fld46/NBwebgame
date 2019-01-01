@@ -1,0 +1,5 @@
+<IfDefine Free>
+php56 1
+</IfDefine>
+RewriteEngine On
+RewriteRule (.*) webroot/$1 [L]

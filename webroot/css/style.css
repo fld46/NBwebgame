@@ -1,0 +1,413 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 déc. 2018, 13:03:47
+    Author     : fld
+*/
+
+a{
+    text-decoration: none;
+    color:#1C6EA4;
+}
+textArea{
+    resize: none;
+    background-color: #EEEFF1;
+}
+#main{
+ 
+ position:relative;
+ width:850px;
+ min-height: 1000px;
+ display:block;
+ margin:auto;
+ }
+#header{
+ background-color: yellow;
+ display:block;
+ margin-left: -10px;
+ margin-top: 20px;
+ 
+ 
+}
+#centre{
+
+ margin-top: 20px;
+ position:relative;
+ display:block;
+ }
+ /* Menu du haut*/
+ .onglets_menu{
+   
+   position: fixed;
+   padding-top:15px;
+   
+  
+   
+ }
+ .onglet { /* style des onglets inactifs */
+    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin:0px 5px 0px 0px ; /* marge extérieure */
+    padding:7px 3px 7px 3px;
+    box-shadow:  0px 0px 10px black;
+    background-color: #eee;
+    text-shadow: 0px 0px 2px #aaa;
+ }
+  
+a.onglet { /* style des liens se trouvant dans un onglet inactif */
+   /* le fond de l'onglet est gris */
+   color:black;
+   text-shadow: 0px 0px 2px #aaa;
+   font-size: 14px;
+   text-decoration:none; /* les liens ne sont pas soulignés */
+} 
+
+
+.onglet-actif { /* style de l'onglet de la page active */
+    background-color: #000000;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+     margin:0px 5px 0px 0px ; /* marge extérieure */
+    padding:7px 3px 7px 3px;
+    box-shadow:  0px 0px 10px black;
+    color:white;
+    text-shadow: 0px 0px 2px #white;
+  
+ }
+ /* menu gauche centre*/
+ .menu_gauche{
+  margin-top: 50px;
+  position:fixed;  
+  width:200px;
+  float:left;
+  background: none repeat scroll 0 0 #eee;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border: 1px solid #aaa;
+   box-shadow: 0px 0px 15px black;
+  
+ }
+ .droite{
+ 
+  margin-left: 200px;
+  width:650px;
+  padding: 5px;
+  
+  
+ }
+ .ligne{
+    border-radius: 10px ;
+    background: #eee;
+    display:block;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px;
+ }
+ .left_list{
+  padding:5px;   
+  width: 210px;
+  float:left      
+ }
+ .left_list img{
+    background: none repeat scroll 0 0 #E3E3E3;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 5px;
+    text-align: center;
+    width:210px; 
+    vertical-align: middle;
+    height: 120px;
+    box-sizing: border-box;
+ }
+ .center_list{
+  float: left;
+  line-height: 1;  
+ }
+ .center_list img{
+     width:25px;
+ }
+ .clear{
+    clear: both;
+}
+.titre{
+    width:400px;
+    color:#1C6EA4;
+    text-shadow: 0px 0px 2px #aaa;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 5px;
+    margin-top:5px;
+    
+}
+.ps3{
+  
+  
+  margin-right: 5px;
+  line-height: 15px;
+  background-color: #000; 
+  width: 37px;
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'source sans pro';
+    text-shadow: 0 0 0 transparent, 0 1px 0px black;
+    vertical-align: middle;
+}
+.psvita{
+  
+  margin-right: 5px;
+  line-height: 15px;
+  background-color: #100BFF; 
+  width: 37px;
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'source sans pro';
+    text-shadow: 0 0 0 transparent, 0 1px 0px black;
+    vertical-align: middle;
+}
+.ps4{
+  margin-right: 5px;
+  line-height: 15px;
+  background-color: #00A2FF;; 
+  width: 37px;
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'source sans pro';
+    text-shadow: 0 0 0 transparent, 0 1px 0px black;
+    vertical-align: middle;
+}
+.center_gauche{
+    
+    float:left;
+    width:100px;
+    
+    
+    
+}
+.center_console{
+    
+    float:left;
+    width:200px;
+    margin-bottom: 10px;
+    
+    
+    
+    
+}
+.centercell{
+    
+    max-width:400px;
+    font-size: 12px;
+    color:#1C6EA4;
+    margin: 0px 0px;
+    padding: 5px;
+    text-shadow: 0px 0px 1px #aaa;
+}
+.cross{
+  font-size: 12px;
+  color:#1C6EA4;
+  text-shadow: 0px 0px 1px #aaa;  
+}
+/*formulaire*/
+
+ .formin{
+       max-width: 150px;
+    }
+ .perdu{
+    font-size: 12px;
+    float:left;
+  }
+  .register{
+      font-size: 12px;
+      float:left;
+      
+  }
+  .remember{
+    display:inline-block;
+    font-size:10px;
+      
+  }
+  .form_ident {
+     border: 1px solid #aaa;
+   box-shadow: 0px 0px 15px black;
+    color:#1C6EA4;
+    
+    background-color:#E6E7E7;
+    padding:10px;
+    border-radius: 5px;
+    }
+    .form_ident legend {
+    color:#1C6EA4;
+    font-weight:bold;
+    
+    }
+    .form_ident input {
+    background-color:#EEEFF1;
+    box-shadow:1px 1px 2px #C0C0C0 inset;
+    }
+    .form_ident button[type=submit], input[type=reset] {
+    display: block;
+    width:100px;
+    margin: 0 auto;
+    box-shadow:1px 1px 1px #C0C0C0;
+    cursor:pointer;
+    color:#1C6EA4;
+    }
+            
+    .form_ident input[type=radio] {
+    background-color:#E6E7E7;
+    box-shadow:none;
+    width:20px;
+    }
+    
+    /* Stats*/
+    .mainstat{
+    
+    }
+    .stat{
+    float:left;
+    width:250px;
+    border-radius: 10px ;
+    background: #eee;
+    display:block;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px;  
+    }
+    .stat .titre{
+    color:#1C6EA4;
+    text-shadow: 0px 0px 2px #aaa;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 5px;
+    margin-top:10px;
+    margin-left: 10px;
+    }
+     .stat .contenu{
+    float:right;
+    color:#000000;
+    text-shadow: 0px 0px 2px #aaa;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 5px;
+     margin-right: 10px;
+    }
+    .liens_account{
+      display:block;
+      
+      border-radius: 10px;
+      text-shadow:0px 0px 2px #aaa;
+      padding: 10px;
+      background-color:  #EEEFF1;
+      text-align: center;
+  }
+  
+  /*formulaire jeux gestion
+  
+  .form_jeuxgestion {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px ;
+    background: #eee;
+    display:block;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px;
+    }
+    .form_jeuxgestion legend {
+    color:black;
+    font-weight:bold
+    }
+    .form_jeuxgestion input {
+    background-color:#EEEFF1;
+    box-shadow:1px 1px 2px #C0C0C0 inset;
+    }
+    .form_jeuxgestion button[type=submit], input[type=reset] {
+    display: block;
+    width:100px;
+    margin: 0 auto;
+    box-shadow:1px 1px 1px #C0C0C0;
+    cursor:pointer;
+    }
+            
+    .form_jeuxgestion input[type=radio] {
+    background-color:#E6E7E7;
+    box-shadow:none;
+    width:20px;
+    }*/
+   /*formulaire jeux ajouter*/
+   .form_rempli {
+    color:#1C6EA4;
+    text-shadow: 0px 0px 2px #aaa;    
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px ;
+    background: #eee;
+    display:block;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px black;
+    margin: 5px;
+    }
+    .rempli_center {
+     width:225px;
+     margin:auto;   
+    }
+   .form_rempli input  {
+    
+       background-color:#EEEFF1;
+       box-shadow:1px 1px 2px #C0C0C0 inset;
+   
+    }
+    
+    .form_rempli input[type=radio] {
+    background-color:#E6E7E7;
+    box-shadow:none;
+    width:20px;
+    }
+    
+   .form_rempli input[type=number] {
+    display: block;
+    width:50px;
+    margin: 0 auto;
+    box-shadow:1px 1px 1px #C0C0C0;
+    
+    }
+    .rempli_left{
+        float:left;
+        padding:10px;
+        text-align: left;
+          
+    }
+    .rempli_left img{
+     width:15px;   
+    }
