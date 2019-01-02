@@ -65,6 +65,6 @@ class UsersController extends Controller{
        
         setcookie('remember',NULL,-1);
         unset($_SESSION['User']);
-        $this->redirect('');
+        $this->redirect('lgt.php');
     }
 }
