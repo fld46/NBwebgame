@@ -24,12 +24,12 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">';    
                                      foreach ($submenu as $s):
-                                        echo '<a class="dropdown-item" href="#">'.$s->name.'</a>';
+                                        echo '<a class="dropdown-item" href="'.$s->link.'">'.$s->name.'</a>';
                                      endforeach;    
-                                echo '</li></div>';
+                                
                             }else{
-                                echo '<li class="nav-item"><a href="'.Router::url('').'" class="nav-link">'.$p->name.'</a></li>';
-                                echo '<a href="'.Router::url('users/logout').'" class="nav-link">Se déconnecter</a>';
+                                echo '<li class="nav-item"><a href="'.Router::url($p->link).'" class="nav-link">'.$p->name.'</a></li>';
+                                
                                 
                             }
                     endforeach;?>

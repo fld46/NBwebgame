@@ -173,7 +173,19 @@ class Model{
                     if(empty($data->$k)){
                         $errors[$k] = $v['message'];
                     }
-                }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
+                }
+                if($v['rule'] == 'isUnique'){
+                    $sql=$this->findCount(array($k => $data->$k));
+                    if($sql!=0){
+                        $errors[$k] = $v['message'];
+                    }
+                }
+                if($v['rule'] == 'isSimilar'){
+                    $field = explode('_', $k);
+                    if($data->$k!==$data->{$field[1]}){
+                        $errors[$k] = $v['message'];
+                    }
+                 }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
                     $errors[$k] = $v['message'];
                 }
             }

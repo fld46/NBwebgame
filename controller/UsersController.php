@@ -65,6 +65,23 @@ class UsersController extends Controller{
        
         setcookie('remember',NULL,-1);
         unset($_SESSION['User']);
-        $this->redirect('');
+        $this->redirect('lgt.php');
+    }
+    
+    function register(){
+        $this->loadModel('User');
+        $d['id']= '';
+        if($this->request->data){
+             
+            if($this->User->validates($this->request->data)){
+                //$this->User->save($this->request->data);
+                $this->Session->setFlash('Le jeu a bien été traité');
+                $this->redirect('');
+            }else{
+                $this->Session->setFlash('Merci de corriger vos informations','danger');
+            }
+            
+        }
+        
     }
 }

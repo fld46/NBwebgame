@@ -22,7 +22,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="<?= Router::url('');?>">Accueil<span class="sr-only"></span></a>
             </li>
-            
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= Router::url('users/register');?>">Register<span class="sr-only"></span></a>
+            </li>
           </ul>
             <form class="form-inline my-2 my-lg-0" action="<?= Router::url('');?>" method="post">
              <?= $this->Form->input('login','',array('placeholder'=>'identifiant'));?>

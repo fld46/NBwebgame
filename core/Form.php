@@ -53,6 +53,8 @@ class Form{
         }
         elseif($options['type']=='password'){
             $html .=  '<input type="'.$options['type'].'" id="input'.$label.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
+        }elseif($options['type']=='email'){
+            $html .=  '<input type="mail" id="input'.$label.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
         }
         if($error){
             $html .= '<span class="help-inline">'.$error.'</span';
