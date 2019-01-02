@@ -11,6 +11,7 @@ class UsersController extends Controller{
      * login
      */
     function login(){
+        
         if($this->request->data){
             $data = $this->request->data;
             //$data->password = password_hash($data->password, PASSWORD_BCRYPT);
@@ -18,29 +19,52 @@ class UsersController extends Controller{
             $user = $this->User->findFirst(array(
                 'conditions' => array('login' => $data->login )
             ));
-            if(password_verify($data->password, $user->password)){
+           
             if(!empty($user)){
-                $this->Session->write('User',$user);
-                
-            }
+                 if(password_verify($data->password, $user->password)){
+                    $this->Session->write('User',$user);
+                        if($data->remember){
+                            $this->User->remember($user->id);
+                            $this->Session->setFlash('Vous etes maintenant connecté');
+                    }
+                }
             }
             $this->request->data->password = '';
             
         }
+        $this->loadModel('User');
+        if(!$this->Session->isLogged()&& isset($_COOKIE['remember'])){
+            $user = $this->User->findFirst(array(
+               'conditions' => array('id' => $this->User->connectFromcookie())
+            ));
+           $this->Session->write('User',$user);
+           $this->Session->setFlash('Vous etes maintenant connecté'); 
+        }
+        
         if($this->Session->isLogged()){
             if($this->Session->user('role') == 'A'){
-                $this->redirect('gestionsu/games');
+                $this->redirect('gestionsu');
             }else{
-                $this->redirect('');
+                $this->redirect('game');
             }
-        }
+        }else{
+            $perPage = 50;
+            $this->loadModel('Game');
+            $d['games'] = $this->Game->find(array(
+                'limit' => ($perPage*($this->request->page -1)).','.$perPage
+                ));
+                $d['total'] = $this->Game->findCount();
+                $d['page'] = ceil($d['total']/ $perPage);
+                $this->set($d);
+            }
     }
     /**
      * logout
      */
     function logout(){
+       
+        setcookie('remember',NULL,-1);
         unset($_SESSION['User']);
-        $this->Session->setFlash('Vous etes maintenant déconnecté');
         $this->redirect('');
     }
 }

@@ -20,8 +20,9 @@ class Conf {
 }
 
 Router::prefix('gestionsu','admin');
+Router::prefix('member','member');
 
-Router::connect('','games/index');
+Router::connect('','users/login');
 Router::connect('gestionsu','gestionsu/games/index');
 Router::connect('game/:slug-:id','games/view/id:([0-9]+)/slug:([a-z0-9\-]+)');
 Router::connect('game/*','games/*');

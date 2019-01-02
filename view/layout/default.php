@@ -7,13 +7,13 @@
         <meta charset="UTF-8">
     </head>
     <body>
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <a class="navbar-brand" href="#">Menu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ">
           <?php $menu = $this->request('Menus', 'getMenu'); ?>
                     <?php foreach($menu as $p):?>
                         <?php $submenu = $this->request('Menus', 'getSMenu',$p->id);
@@ -29,8 +29,11 @@
                                 echo '</li></div>';
                             }else{
                                 echo '<li class="nav-item"><a href="'.Router::url('').'" class="nav-link">'.$p->name.'</a></li>';
+                                echo '<a href="'.Router::url('users/logout').'" class="nav-link">Se déconnecter</a>';
                             }
+                            
                     endforeach;?>
+        
         </ul>
         </div>
         </nav>

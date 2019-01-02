@@ -23,4 +23,8 @@
             echo'</pre>';
         }
      }
+     static function random($length){
+         $alphabet="0123456789AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopmlkjhgfdsqwxcvbn";
+    return substr(str_shuffle(str_repeat($alphabet, 60)),0,$length);
+    }
  }

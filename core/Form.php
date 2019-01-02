@@ -19,7 +19,7 @@ class Form{
         $classError ='';
         if(isset($this->errors[$name])){
             $error = $this->errors[$name];
-            $classError = '-error';
+            $classError = 'is-invalid';
         }
         
         if(!isset($this->controller->request->data->$name)){
@@ -30,10 +30,10 @@ class Form{
         if($label == 'hidden'){
             return '<input type="hidden" name="'.$name.'" value="'.$value.'">';
         }
-        $html = '<div class="from-group row'.$classError.'">
-                <label for="input'.$name.'">'.$label.'</label>
+        $html = '<div class="form-group '.$classError.'">
+                <label for="input'.$name.'" >'.$label.'</label>
                 <div class="input">';
-        $attr = 'class="form-control" ';
+        $attr = 'class="form-control '.$classError.'" ';
         foreach($options as $k=>$v){ 
             if($k!='type'){
                 $attr .= "$k=\"$v\"";

@@ -29,9 +29,11 @@
                                 echo '</li></div>';
                             }else{
                                 echo '<li class="nav-item"><a href="'.Router::url('').'" class="nav-link">'.$p->name.'</a></li>';
+                                echo '<a href="'.Router::url('users/logout').'" class="nav-link">Se déconnecter</a>';
+                                
                             }
                     endforeach;?>
-            <li class="nav-item"><a href="<?=Router::url('users/logout');?>" class="nav-link">Se déconnecter</a></li>
+            
         </ul>
         </div>
         </nav>
