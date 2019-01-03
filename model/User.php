@@ -8,16 +8,13 @@
 class User extends Model{
   
     public $validate = array(
-                    'login' => array(
-                            'rule' => 'notEmpty',
-                            'message' => 'Vous devez specifier un identifiant'
-                    ),
+                    
                     'login' => array(
                             'rule' => 'isUnique',
                             'message' => 'Identifiant deja pris'
                     ),
                     'password' => array(
-                            'rule' => '([a-z0-9]{8}+)',
+                            'rule' => '([a-z0-9]{8,}+)',
                             'message' => 'Vous devez rentrer un mot de passe de 8 caracteres minimum' 
                     ),
                     'conf_password' => array(

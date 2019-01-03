@@ -31,35 +31,35 @@ class Form{
             return '<input type="hidden" name="'.$name.'" value="'.$value.'">';
         }
         $html = '<div class="form-group '.$classError.'">
-                <label for="input'.$name.'" >'.$label.'</label>
-                <div class="input">';
-        $attr = 'class="form-control '.$classError.'" ';
+                <small><label for="input'.$name.'" >'.$label.'</label></small>';
+                
+        $attr = 'class="form-control-sm'.$classError.'" ';
         foreach($options as $k=>$v){ 
             if($k!='type'){
                 $attr .= "$k=\"$v\"";
             }    
         }
         if(!isset($options['type'])){
-            $html .=  '<input type="text" id="input'.$label.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
+            $html .=  '<input type="text" id="input'.$name.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
         }
         elseif($options['type']=='number'){
-            $html .=  '<input type="'.$options['type'].'" id="input'.$label.'" name="'.$name.'" value="'.(empty($value)?'0':$value).'" '.$attr.' >';
+            $html .=  '<input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="'.(empty($value)?'0':$value).'" '.$attr.' >';
         }
         elseif($options['type']=='checkbox'){
-            $html .=  '<input type ="hidden" name"'.$name.'" value="0"><input type="'.$options['type'].'" id="input'.$label.'" name="'.$name.'" value="1" '.(empty($value)?'':'checked').'>';
+            $html .=  '<input type ="hidden" name"'.$name.'" value="0"><input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="1" '.(empty($value)?'':'checked').'>';
         }
         elseif($options['type']=='file'){
-            $html .=  '<input type="'.$options['type'].'" id="input'.$label.'" name="'.$name.'"'.$attr.'>';
+            $html .=  '<input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'"'.$attr.'>';
         }
         elseif($options['type']=='password'){
-            $html .=  '<input type="'.$options['type'].'" id="input'.$label.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
+            $html .=  '<input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
         }elseif($options['type']=='email'){
-            $html .=  '<input type="email" id="input'.$label.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
+            $html .=  '<input type="email" id="input'.$name.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
         }
         if($error){
             $html .= '<span class="help-inline">'.$error.'</span';
         }
-        $html .= '</div></div>';
+        $html .= '</div>';
         return $html;
     }
 }

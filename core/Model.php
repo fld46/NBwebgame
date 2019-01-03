@@ -87,10 +87,31 @@ class Model{
                 $sql .= implode(' AND ', $cond);
             }            
         }
+        if(isset($req['conditionsspec'])){
+            if (isset($req['conditions'])){
+                $sql .= ' AND ';
+            }else{
+                $sql .= 'WHERE ';
+            }
+            if(!is_array($req['conditionsspec'])){
+                $sql .=$req['conditionsspec'];
+            }else{
+                $cond = array();
+                foreach($req['conditionsspec'] as $k=>$v){
+                    if(!is_numeric($v)){
+                        $v = ($v);
+                    }
+                    $cond[] = "$v";
+                }
+                $sql .= implode(' AND ', $cond);
+            }            
+        }
         if(isset($req['limit'])){
             $sql .= 'LIMIT '.$req['limit'];
         }
         $pre = $this->db->prepare($sql);
+        //Functions::debug($pre);
+        //die();
         $pre->execute();
         return $pre->fetchAll(PDO::FETCH_OBJ);
         
@@ -144,7 +165,7 @@ class Model{
             }
             
         }
-        
+      
         if(isset($data->$key) && !empty($data->$key)){
             $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).' WHERE '.$key.'=:'.$key;
             $this->id = $data->$key;
@@ -168,28 +189,23 @@ class Model{
             
             if(!isset($data->$k)){
                 $errors[$k] = $v['message'];
-            }else{
-                if($v['rule'] == 'notEmpty'){
-                    if(empty($data->$k)){
-                        $errors[$k] = $v['message'];
-                    }
-                }
-                if($v['rule'] == 'isUnique'){
+            }elseif(empty($data->$k)){
+                    $errors[$k] = 'Vous devez remplir ce champ';
+                }elseif($v['rule'] == 'isUnique'){
                     $sql=$this->findCount(array($k => $data->$k));
-                    if($sql!=0){
+                    if($sql!=0 ){
                         $errors[$k] = $v['message'];
                     }
-                }
-                if($v['rule'] == 'isSimilar'){
+                }elseif($v['rule'] == 'isSimilar'){
                     $field = explode('_', $k);
                     if($data->$k!==$data->{$field[1]}){
                         $errors[$k] = $v['message'];
                     }
-                 }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
+                }elseif(!preg_match('/^'.$v['rule'].'$/',$data->$k)){
                     $errors[$k] = $v['message'];
-                }
+                    }
             }
-        }
+        
         $this->errors = $errors;
         if(isset($this->Form)){
             $this->Form->errors = $errors;

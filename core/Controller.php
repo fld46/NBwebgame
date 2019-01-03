@@ -20,6 +20,7 @@ class Controller{
     function __construct($request = null){
         $this->Session = new Session();
         $this->Form = new Form($this);
+        $this->Mail = new Mail();
         if($request){
             $this->request = $request;
             require ROOT.DS.'config'.DS.'hook.php'; 

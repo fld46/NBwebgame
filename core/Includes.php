@@ -7,6 +7,7 @@
  */
 require 'Session.php';
 require 'Form.php';
+require 'Mail.php';
 require 'Functions.php';
 require 'Router.php';
 require ROOT.DS.'config'.DS.'conf.php';

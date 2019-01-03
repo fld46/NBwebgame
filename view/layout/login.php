@@ -25,12 +25,15 @@
             <li class="nav-item active">
                 <a class="nav-link" href="<?= Router::url('users/register');?>">Register<span class="sr-only"></span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= Router::url('users/perdu');?>">Mot de passe perdu<span class="sr-only"></span></a>
+            </li>
           </ul>
             <form class="form-inline my-2 my-lg-0" action="<?= Router::url('');?>" method="post">
              <?= $this->Form->input('login','',array('placeholder'=>'identifiant'));?>
              <?= $this->Form->input('password','',array('type'=>'password','placeholder'=>'password'));?>
              <?= $this->Form->input('remember','Se souvenir de moi',array('type'=>'checkbox'));?>   
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
+            <button class="btn-xs btn-primary my-2 my-sm-0 " type="submit">Login</button>
           </form>
         </div>
         
