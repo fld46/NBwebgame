@@ -30,23 +30,25 @@ class Form{
         if($label == 'hidden'){
             return '<input type="hidden" name="'.$name.'" value="'.$value.'">';
         }
-        $html = '<div class="form-group '.$classError.'">
-                <small><label for="input'.$name.'" >'.$label.'</label></small>';
-                
-        $attr = 'class="form-control-sm'.$classError.'" ';
+        $html = '<div class="form-label-group '.$classError.'">
+                <label for="input'.$name.'" >'.$label.'</label>';
+        
+        $attr = 'class="form-control '.$classError.'" ';
         foreach($options as $k=>$v){ 
             if($k!='type'){
                 $attr .= "$k=\"$v\"";
             }    
         }
+        
         if(!isset($options['type'])){
             $html .=  '<input type="text" id="input'.$name.'" name="'.$name.'" value="'.$value.'" '.$attr.' >';
         }
+       
         elseif($options['type']=='number'){
             $html .=  '<input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="'.(empty($value)?'0':$value).'" '.$attr.' >';
         }
         elseif($options['type']=='checkbox'){
-            $html .=  '<input type ="hidden" name"'.$name.'" value="0"><input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="1" '.(empty($value)?'':'checked').'>';
+            $html =  '<div class="checkbox-mb-3 '.$classError.'"><label><input type ="hidden" name"'.$name.'" value="0"><input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'" value="1" '.(empty($value)?'':'checked').'> '.$label.'</label>';
         }
         elseif($options['type']=='file'){
             $html .=  '<input type="'.$options['type'].'" id="input'.$name.'" name="'.$name.'"'.$attr.'>';

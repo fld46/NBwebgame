@@ -9,6 +9,6 @@
 if($this->request->prefix == 'admin'){
     $this->layout = 'admin';
     if(!$this->Session->isLogged() || $this->Session->user('role') != 'A'){
-        $this->redirect('users/login');
+        $this->redirect('users/index');
     }
 }

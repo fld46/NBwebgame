@@ -1,11 +1,13 @@
 <?php $title_for_layout = "Collection de jeux";?>
-<div class="page-header">
+<div class="text-center mb-4 ">
     <h1>La liste de jeux </h1>
 </div>
 <?php foreach ( $games as $k => $v ):?>
-    <div class="ligne"><h2><?= $v->titre;?></h2>
-    <?= $v->image;?>
-        <p><a href="<?= Router::url("games/view/id:{$v->id}/slug:$v->slug");?>">Lire la suite &rarr;</a></p></div>
+    <div class="row border border-light">
+        
+        <div class="col-lg-3 col-sm-12 " style='padding-left:0;'><img src="<?= 'img/games/'.$v->id.DS.$v->image;?>" alt="" class="img-fluid img-thumbnail"></div><div class="col-lg-9 col-sm-12"><h2><?= $v->titre;?></h2>
+    
+            <p><a href="<?= Router::url("games/view/id:{$v->id}/slug:$v->slug");?>">Lire la suite &rarr;</a></p></div></div>
 
 <?php endforeach ?>
 
@@ -17,3 +19,4 @@
             
         </ul>
     </div>
+

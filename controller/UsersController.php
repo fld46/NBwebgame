@@ -7,6 +7,40 @@
  */
 class UsersController extends Controller{
     
+    public $layout = 'login';
+    
+    public function index(){
+       
+        $this->loadModel('User');
+        if(!$this->Session->isLogged()&& isset($_COOKIE['remember'])){
+            $user = $this->User->findFirst(array(
+               'conditions' => array('id' => $this->User->connectFromcookie())
+            ));
+           $this->Session->write('User',$user);
+           $this->Session->setFlash('Vous etes maintenant connecté'); 
+        }
+        
+        if($this->Session->isLogged()){
+            if($this->Session->user('role') == 'A'){
+                $this->redirect('gestionsu');
+            }else{
+                $this->redirect('member');
+            }
+        }else{
+            $perPage = 50;
+            $this->loadModel('Game');
+            $d['games'] = $this->Game->find(array(
+                'limit' => ($perPage*($this->request->page -1)).','.$perPage
+                ));
+                $d['total'] = $this->Game->findCount();
+                $d['page'] = ceil($d['total']/ $perPage);
+                $this->set($d);
+            }
+    }
+        
+    
+    
+    
     /**
      * login
      */
@@ -18,7 +52,7 @@ class UsersController extends Controller{
             $user = $this->User->findFirst(array(
                 'conditions' => array('login' => $data->login )
             ));
-           
+           Functions::debug($user);
             if(!empty($user)){
                  if(password_verify($data->password, $user->password)&&!empty($user->confirmed_at)){
                     $this->Session->write('User',$user);
@@ -44,7 +78,7 @@ class UsersController extends Controller{
             if($this->Session->user('role') == 'A'){
                 $this->redirect('gestionsu');
             }else{
-                $this->redirect('game');
+                $this->redirect('member');
             }
         }else{
             $perPage = 50;
@@ -71,6 +105,7 @@ class UsersController extends Controller{
      * creation d'un compte
      */
     function register(){
+        
         $this->loadModel('User');
         if($this->request->data){
             if($this->User->validates($this->request->data)){
@@ -78,6 +113,7 @@ class UsersController extends Controller{
                 foreach($this->request->data as $k=>$v){if($k!='conf_password'){
                     $d[$k]=$v;
                 }}
+                $d['password'] = password_hash($d['password'], PASSWORD_BCRYPT);
                 $token = Functions::random(60);
                 $d['confirmation_token'] = $token;
                 $this->User->save($d);

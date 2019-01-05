@@ -9,7 +9,7 @@
     <?= $this->Form->input('password','Mot de passe',array('type'=>'password'));?>
      <?= $this->Form->input('conf_password','Confirmation du mot de passe',array('type'=>'password'));?>
     <?= $this->Form->input('email','E-mail',array('type'=>'email'));?>
-    
+    <p></p>
     <div class="actions">
         <input type="submit" class="btn btn-primary" value="Envoyer">
     </div>

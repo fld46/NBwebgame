@@ -8,42 +8,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title><?= isset($title_for_layout)?$title_for_layout:'Collection de jeux - identification';?></title>
+    <title><?= isset($title_for_layout)?$title_for_layout:'Collection de jeux';?></title>
   </head>
   <body>
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
         <a class="navbar-brand" href="#">Menu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= Router::url('');?>">Accueil<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= Router::url('users/register');?>">Register<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= Router::url('users/perdu');?>">Mot de passe perdu<span class="sr-only"></span></a>
-            </li>
+              <li class="nav-item"><a href="<?= Router::url('');?>" class="nav-link">Accueil</a></li>
           </ul>
-            <form class="form-inline my-2 my-lg-0" action="<?= Router::url('');?>" method="post">
-             <?= $this->Form->input('login','',array('placeholder'=>'identifiant'));?>
-             <?= $this->Form->input('password','',array('type'=>'password','placeholder'=>'password'));?>
-             <?= $this->Form->input('remember','Se souvenir de moi',array('type'=>'checkbox'));?>   
-            <button class="btn-xs btn-primary my-2 my-sm-0 " type="submit">Login</button>
-          </form>
+          <a class="btn btn-secondary btn-sm" href="<?= Router::url('users/register');?>">S&#39;inscrire</a>&nbsp;<a class="btn btn-secondary btn-sm" id="btn-login" href="<?= Router::url('users/login');?>">Se connecter</a>
         </div>
-        
     </nav>
-    
-    <div class ="container">
-    
-    <?= $content_for_layout;?>   
-    
-                    
+    <div class ="container " style="padding-top: 70px;">
+        <?= $content_for_layout;?>   
     </div>
 
     <!-- Optional JavaScript -->

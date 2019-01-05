@@ -8,6 +8,21 @@
 $this->layout = "login";
 $title_for_layout = $game->titre;
 ?>
-<h1><?= $game->titre;?></h1>
 
-<?= $game->image;?>
+<div class="text-center mb-4 ">
+<h1><?= $game->titre;?></h1>   
+</div>
+
+<div class="row border">
+    <div class="col-lg-3 col-sm-12 " style='padding-left:0;'><img src="<?= '/img/games/'.$game->id.'/'.$game->image;?>" alt="" class="img-fluid img-thumbnail"></div>
+    <div class="col-lg-8 col-sm-12 " >
+        <div class="float-left">Difficulté : <?= $game->difficulte;?></div>
+        <div class="float-right">Durée : <?= $game->temps;?> H</div><br>       
+        <div class="float-left">Multi : <?= $game->multi;?></div>
+        <div class="float-right">PSVita : <?= $game->psvita;?> PS3 : <?= $game->ps3;?> PS4 :<?= $game->ps4;?></div><br>
+        <div>Guide : <?= $game->liens;?></div>        
+        <div>Cross-save : <?= $game->crosssav;?> Cross-trophy : <?= $game->crosstrophy;?> Cross-multi : <?= $game->crossmulti;?></div>
+        <div>Commentaire : <?= $game->comments;?></div>
+    </div>
+</div>
+

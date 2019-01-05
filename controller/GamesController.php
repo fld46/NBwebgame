@@ -25,7 +25,7 @@ class GamesController extends Controller{
         $this->loadModel('Game');
         $condition = array('id'=>$id);
         $d['game'] = $this->Game->findFirst(array(
-            'fields'     => 'id,slug,image,titre',            
+            'fields'     => '*',            
             'conditions' => $condition
         ));
         
