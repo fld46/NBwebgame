@@ -113,7 +113,7 @@ class Controller{
          if($code == 301){
              header("HTTP/1.1 301 Moved Perlanently");
          }
-         header("Location:".Router::url($url));
+         header("Location:/".$url);
      }
      
     
