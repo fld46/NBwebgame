@@ -25,6 +25,12 @@ class Controller{
             $this->request = $request;
             require ROOT.DS.'config'.DS.'hook.php'; 
         }
+         if($this->Session->user('role')=='A'){
+           $this->layout="admin"; 
+        }
+        if(!$this->Session->isLogged()){
+           $this->layout="login"; 
+        }
     }
     
     /**

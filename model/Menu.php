@@ -11,8 +11,13 @@ class Menu extends Model{
      * Permet de recuperer les menus
      * @return type
      */
-    public function getMenu(){
-        $sql = $this->find();
+    public function getMenu($role='M'){
+        
+            $sql = $this->find(array(
+            'conditions' => array('role'=>$role)));
+            //Functions::debug($sql);
+            //die();
+        
         return $sql;
     }
     
@@ -24,7 +29,7 @@ class Menu extends Model{
      */
     public function getSMenu($id, $role=null){        
         if($role){
-            $role = 'and role='.$role;
+            $role = 'and role="'.$role.'"';
         }
         $sql = "SELECT * 
         FROM menus m

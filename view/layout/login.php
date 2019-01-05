@@ -24,7 +24,7 @@
           <a class="btn btn-secondary btn-sm" href="<?= Router::url('users/register');?>">S&#39;inscrire</a>&nbsp;<a class="btn btn-secondary btn-sm" id="btn-login" href="<?= Router::url('users/login');?>">Se connecter</a>
         </div>
     </nav>
-    <div class ="container " style="padding-top: 70px;">
+    <div class ="container" style="padding-top: 70px;">
         <?= $content_for_layout;?>   
     </div>
 

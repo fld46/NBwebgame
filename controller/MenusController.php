@@ -24,13 +24,13 @@ class MenusController extends Controller{
     /**
      * ADMIN
      */
-    public function admin_getMenu(){
+     public function admin_getMenu(){
         $this->loadModel('Menu');
-        return $this->Menu->getMenu();
+        return $this->Menu->getMenu('A');
     }
     
     public function admin_getSMenu($id){
         $this->loadModel('Menu');
-        return $this->Menu->getSMenu($id);
+        return $this->Menu->getSMenu($id,'A');
     }
 }

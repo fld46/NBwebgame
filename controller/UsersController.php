@@ -249,4 +249,12 @@ class UsersController extends Controller{
         }
     }
     }
+    
+    /**
+     * ADMIN
+     */
+    
+     public function admin_index(){
+         
+     }   
 }

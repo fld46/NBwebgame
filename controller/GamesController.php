@@ -8,6 +8,9 @@
 class GamesController extends Controller{
     
     function index(){
+       
+       
+        
         $perPage = 60;
         
         $this->loadModel('Game');
@@ -22,6 +25,7 @@ class GamesController extends Controller{
     
     function view($id,$slug){
         
+      
         $this->loadModel('Game');
         $condition = array('id'=>$id);
         $d['game'] = $this->Game->findFirst(array(

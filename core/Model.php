@@ -106,12 +106,14 @@ class Model{
                 $sql .= implode(' AND ', $cond);
             }            
         }
+        if(isset($req['order'])){
+            $sql .= 'ORDER BY '.$req['limit'];
+        }
         if(isset($req['limit'])){
             $sql .= 'LIMIT '.$req['limit'];
         }
         $pre = $this->db->prepare($sql);
-        //Functions::debug($pre);
-        //die();
+        
         $pre->execute();
         return $pre->fetchAll(PDO::FETCH_OBJ);
         
