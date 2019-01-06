@@ -3,7 +3,7 @@
 </div>
 <?php foreach ( $games as $k => $v ):?>
     <div class="row border border-light ">
-        <div class="col-lg-2 col-sm-12 " style='padding-left:0;'><img src="<?= 'img/games/'.$v->id.DS.$v->image;?>" alt="" class="img-fluid img-thumbnail"></div>
+        <div class="col-lg-2 col-sm-12 " style='padding-left:0;'><img src="<?= '/img/games/'.$v->id.DS.$v->image;?>" alt="" class="img-fluid img-thumbnail"></div>
         <div class="col-lg-10 col-sm-12"><h3><?= $v->titre;?></h3><p><a href="<?= Router::url("games/view/id:{$v->id}/slug:$v->slug");?>">Lire la suite &rarr;</a></p></div>
     </div>
 

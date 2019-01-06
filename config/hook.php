@@ -12,3 +12,8 @@ if($this->request->prefix == 'admin'){
         $this->redirect('users/index');
     }
 }
+if($this->request->prefix == 'member'){
+    if(!$this->Session->isLogged()){
+        $this->redirect('users/index');
+    }
+}

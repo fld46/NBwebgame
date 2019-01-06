@@ -27,6 +27,8 @@ class Controller{
         }
          if($this->Session->user('role')=='A'){
            $this->layout="admin"; 
+        }elseif($this->Session->user('role')!='A'){
+           $this->layout="default";  
         }
         if(!$this->Session->isLogged()){
            $this->layout="login"; 

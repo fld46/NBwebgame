@@ -29,7 +29,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">';    
                                      foreach ($submenu as $s):
-                                        echo '<a class="dropdown-item" href="#">'.$s->name.'</a>';
+                                        echo '<a class="dropdown-item" href="'.Router::url('member/'.$s->link).'">'.$s->name.'</a>';
                                      endforeach;    
                                 echo'</li>';
                             }else{
@@ -40,7 +40,7 @@
                     endforeach;?>
   
     </ul>
- 
+    <a class="btn btn-secondary btn-sm" href="<?= Router::url('users/logout');?>">Se déconnecter</a>  
   </div>
 </nav>
     <div class ="container" style="padding-top: 70px;">

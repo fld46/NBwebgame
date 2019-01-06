@@ -52,7 +52,7 @@ class UsersController extends Controller{
             $user = $this->User->findFirst(array(
                 'conditions' => array('login' => $data->login )
             ));
-           Functions::debug($user);
+           
             if(!empty($user)){
                  if(password_verify($data->password, $user->password)&&!empty($user->confirmed_at)){
                     $this->Session->write('User',$user);
@@ -224,7 +224,7 @@ class UsersController extends Controller{
                     
                 ),
                 'conditionsspec' => array(
-                   'temps' => 'reset_at > DATE_SUB(NOW(), INTERVAL 300 MINUTE)'
+                   'temps' => 'reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)'
                 )));
             
             $this->set('id',$user->id);
@@ -255,6 +255,57 @@ class UsersController extends Controller{
      */
     
      public function admin_index(){
-         
-     }   
+           $this->loadModel('User');
+            $d['users'] = $this->User->find();
+            $d['total'] = $this->User->findCount();
+            
+            
+            $this->set($d);   
+    
+     }
+     
+      /**
+     * Permet de supprimer un utilisateur
+     * @param type $id id de l'utilisateur
+     */
+    function admin_delete($id){
+        $this->loadModel('User');
+        $this->User->delete($id);
+        $this->Session->setFlash('L\'utilisateur a bien été supprimé');
+        $this->redirect("gestionsu/users/index");
+    }
+    
+     function admin_edit($id = null){
+        $this->loadModel('User');
+        $d['id']= '';
+        if($this->request->data){
+        
+            if($this->User->validates($this->request->data)){
+                $this->User->save($this->request->data);
+                $this->Session->setFlash('Le jeu a bien été traité');
+                $id = $this->User->id;
+                $this->redirect('gestionsu/users/index');
+            }else{
+                $this->Session->setFlash('Merci de corriger vos informations','danger');
+            }
+            
+        }else{
+             if($id){
+                $this->request->data = $this->User->findFirst(array(
+                'conditions' => array('id'=>$id)
+                ));
+                $d['id'] = $id;
+            }
+        }
+       
+        $this->set($d);
+    } 
+    
+    /**
+     * member
+     */
+    
+    public function member_index(){
+        
+    }
 }

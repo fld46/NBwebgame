@@ -1,6 +1,7 @@
 <div class="page-header">
     <h1><?= $total;?> Jeux</h1>
 </div>
+<a href="<?= Router::url('admin/games/edit');?>" class="btn btn-primary">Ajouter un jeu</a>
 <table>
     <thead>
         <tr>
@@ -22,4 +23,3 @@
         <?php endforeach;?>
     </tbody>
 </table>
-<a href="<?= Router::url('admin/games/edit');?>" class="btn btn-primary">Ajouter un jeu</a>

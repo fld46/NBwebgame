@@ -95,5 +95,17 @@ class GamesController extends Controller{
         }
        
         $this->set($d);
-    }    
+    }
+
+    /**
+     * Member
+     */
+    
+     function member_index(){
+        
+        
+    }
+    
+    
+    
 }

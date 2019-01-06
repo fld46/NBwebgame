@@ -137,7 +137,8 @@ class Model{
                 'fields' => 'COUNT('.$this->primaryKey.') as count',
                 'conditions' => $condition
             ));
-        }else{
+        }
+        else{
             $res = $this->findFirst(array(
                'fields' => 'COUNT('.$this->primaryKey.') as count' 
             ));

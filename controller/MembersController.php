@@ -5,18 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-class AdminsController extends Controller{
+class MembersController extends Controller{
     
-    public function admin_index(){
-        $this->loadModel('Admin');
-        $this->loadModel('Game');
-        
-        $d['noguide'] = $this->Game->find(array(
-            'conditionsspec' => 'liens=""'
-        ));
-        
-        
+    public function member_index(){
         $perPage = 60;
         
         $this->loadModel('Game');
@@ -29,5 +20,8 @@ class AdminsController extends Controller{
         $this->set($d);
         
     }
+    
+    
+    
     
 }
