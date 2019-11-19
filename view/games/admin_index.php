@@ -1,3 +1,10 @@
+<div class='container'>
+<div class="row">
+    <div class="col-lg-2">
+        <?= $total;?>
+        <?= count($noguide);?>
+    </div>
+</div>
 <div class="page-header">
     <h1><?= $total;?> Jeux</h1>
 </div>
@@ -23,3 +30,4 @@
         <?php endforeach;?>
     </tbody>
 </table>
+</div>

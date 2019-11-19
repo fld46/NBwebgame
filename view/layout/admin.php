@@ -61,7 +61,7 @@
  <a class="btn btn-secondary btn-sm" href="<?= Router::url('users/logout');?>">Se déconnecter</a>  
   </div>
 </nav>
-    <div class ="container" style="padding-top: 70px;">
+    <div  style="padding-top: 56px;">
                     <?= $this->Session->flash();?>
                     <?= $content_for_layout;?>
         </div>

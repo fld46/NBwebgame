@@ -12,9 +12,7 @@ class AdminsController extends Controller{
         $this->loadModel('Admin');
         $this->loadModel('Game');
         
-        $d['noguide'] = $this->Game->find(array(
-            'conditionsspec' => 'liens=""'
-        ));
+        
         
         
         $perPage = 60;

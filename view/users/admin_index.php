@@ -1,3 +1,4 @@
+<div class='container'>
 <div class="page-header">
     <h1><?= $total;?> Utilisateurs</h1>
 </div>
@@ -23,5 +24,5 @@
         <?php endforeach;?>
     </tbody>
 </table>
-
+</div>
 

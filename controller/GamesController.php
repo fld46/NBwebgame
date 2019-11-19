@@ -53,6 +53,9 @@ class GamesController extends Controller{
         $d['games'] = $this->Game->find(array(
             'fields' => 'id,titre'));
         $d['total'] = $this->Game->findCount();
+        $d['noguide'] = $this->Game->find(array(
+            'conditionsspec' => 'liens=""'
+        ));
         //Functions::debug($d);
         $this->set($d);   
     }
@@ -75,6 +78,14 @@ class GamesController extends Controller{
         $this->loadModel('Game');
         $d['id']= '';
         if($this->request->data){
+             $this->Game->validate = array(
+                    
+                    'difficulte' => array(
+                            'rule' => '(?:[1-9]|0[1-9]|10)',
+                            'message' => 'Vous devez rentrer un nombre entre 1 et 10' 
+                    ));
+   
+    
              
             if($this->Game->validates($this->request->data)){
                 $this->Game->save($this->request->data);

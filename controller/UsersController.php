@@ -108,6 +108,30 @@ class UsersController extends Controller{
         
         $this->loadModel('User');
         if($this->request->data){
+            $this->User->validate = array(
+                    
+                    'login' => array(
+                            'rule' => 'isUnique',
+                            'message' => 'Identifiant deja pris'
+                    ),
+                    'password' => array(
+                            'rule' => '([a-z0-9]{8,}+)',
+                            'message' => 'Vous devez rentrer un mot de passe de 8 caracteres minimum' 
+                    ),
+                    'conf_password' => array(
+                            'rule' => 'isSimilar',
+                            'message' => 'Vous devez rentrer le meme mot de passe' 
+                    ),
+                    'email' => array(
+                            'rule' => '(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))',
+                            'message' => 'Vous devez rentrer un mail valide' 
+                    ),
+                    'email' => array(
+                            'rule' => 'isUnique',
+                            'message' => 'Cet e-mail est déjà pris' 
+                    )
+        
+    );
             if($this->User->validates($this->request->data)){
                 $d=array();
                 foreach($this->request->data as $k=>$v){if($k!='conf_password'){
@@ -174,32 +198,39 @@ class UsersController extends Controller{
         
         $this->loadModel('User');
         if($this->request->data){
-            if($this->User->findFirst((array('conditions' => array('email'=> $this->request->data->email))))){
-                $d=array();
-                $user= $this->User->findFirst((array('conditions' => array('email'=> $this->request->data->email))));
-                foreach($user as $k=>$v){
-                    if($k=='reset_token'){
-                    $d[$k] = Functions::random(60);
-                }elseif($k=='reset_at'){
-                    $d[$k] = date('Y-m-d H:i:s');
-                }else{
-                    $d[$k] = $v;
-                }}
-                $user->reset_token = Functions::random(60);
-                $user->reset_at = date('Y-m-d H:i:s');
-                //Functions::debug($user);
-                $this->User->save($user);
-                $message_txt="Afin de réinitialiser votre mot de passe merci de cliquer sur ce lien : \n\n http://webfldddns.net/users/reset/".$d['id']."/".$d['reset_token']."";
-                $message_html="<html><head></head><body><b>Bonjour</b>,<p>Afin de réinitialiser votre mot de passe merci de cliquer sur ce lien :</p><p><a href=\"http://webfld.ddns.net/users/reset/".$d['id']."/".$d['reset_token']."\">Cliquez ici</a></p></body></html>";
-                $this->Mail->create($user->email, 'collection','fld46@wanadoo.fr','Réinitiatilisation de votre mot de passe', $message_txt, $message_html);
-                $this->Session->setFlash('Une demande de confirmation vous a été envoyé');
+           $this->User->validate = array(                    
+                   
+                    'email' => array(
+                            'rule' => 'Exist',
+                            'message' => 'Cet e-mail n\'est pas inscrit' 
+                    ));
+            if($this->User->validates($this->request->data)){
+                if($this->User->findFirst((array('conditions' => array('email'=> $this->request->data->email))))){
+                    $d=array();
+                    $user= $this->User->findFirst((array('conditions' => array('email'=> $this->request->data->email))));
+                    foreach($user as $k=>$v){
+                        if($k=='reset_token'){
+                        $d[$k] = Functions::random(60);
+                    }elseif($k=='reset_at'){
+                        $d[$k] = date('Y-m-d H:i:s');
+                    }else{
+                        $d[$k] = $v;
+                    }}
+                    $user->reset_token = Functions::random(60);
+                    $user->reset_at = date('Y-m-d H:i:s');
+                    //Functions::debug($user);
+                    $this->User->save($user);
+                    $message_txt="Afin de réinitialiser votre mot de passe merci de cliquer sur ce lien : \n\n http://webfldddns.net/users/reset/".$d['id']."/".$d['reset_token']."";
+                    $message_html="<html><head></head><body><b>Bonjour</b>,<p>Afin de réinitialiser votre mot de passe merci de cliquer sur ce lien :</p><p><a href=\"http://webfld.ddns.net/users/reset/".$d['id']."/".$d['reset_token']."\">Cliquez ici</a></p></body></html>";
+                    $this->Mail->create($user->email, 'collection','fld46@wanadoo.fr','Réinitiatilisation de votre mot de passe', $message_txt, $message_html);
+                    $this->Session->setFlash('Une demande de confirmation vous a été envoyé');
             
-            }else{
-                $this->Session->setFlash('Merci de corriger vos informations','danger');
+                }else{
+                    $this->Session->setFlash('Merci de corriger vos informations','danger');
+                }
+            $this->redirect('');    
             }
-        $this->redirect('');    
         }
-        
     }
     
     public function reset(){

@@ -1,14 +1,10 @@
-<div class="row">
-    <div class="col-lg-2">
-        <?= $total;?>
-        <?= count($noguide);?>
-    </div>
-</div>
+
 <?php $title_for_layout = "Collection de jeux";?>
-<nav class="navbar navbar-light bg-light border">
+<nav class="navbar navbar-light bg-light border ">
   <a class="navbar-brand" href="#">Tri</a>
   
 </nav>
+<div class='container'>
 <div class="text-center mb-4 ">
     <h1>La liste de jeux </h1>
 </div>
@@ -29,4 +25,4 @@
             
         </ul>
     </div>
-
+</div>

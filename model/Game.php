@@ -8,14 +8,7 @@
 
 class Game extends Model{
     
-    public $validate = array(
-                    
-                    'difficulte' => array(
-                            'rule' => '(?:[1-9]|0[1-9]|10)',
-                            'message' => 'Vous devez rentrer un nombre entre 1 et 10' 
-                    )
-    );
-    
+   
     
    
     

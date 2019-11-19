@@ -199,6 +199,11 @@ class Model{
                     if($sql!=0 ){
                         $errors[$k] = $v['message'];
                     }
+                }elseif($v['rule'] == 'Exist'){
+                    $sql=$this->findCount(array($k => $data->$k));
+                    if($sql==0 ){
+                        $errors[$k] = $v['message'];
+                    }
                 }elseif($v['rule'] == 'isSimilar'){
                     $field = explode('_', $k);
                     if($data->$k!==$data->{$field[1]}){
